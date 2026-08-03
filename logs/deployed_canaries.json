@@ -22,5 +22,17 @@
     },
     "hit": false,
     "hit_at": null
+  },
+  {
+    "canary_id": "canary_vsbeAU9N",
+    "deployed_at": "2026-08-03T09:32:23.135562",
+    "trigger_reason": "unit test",
+    "payload": {
+      "type": "fake_credential",
+      "fake_api_key": "sk-decoy-yh7vk1pJMa5NSlHIyMD2M9OQl0GSb4Wr",
+      "fake_endpoint": "/internal/vault_TfwTzY"
+    },
+    "hit": false,
+    "hit_at": null
   }
 ]
