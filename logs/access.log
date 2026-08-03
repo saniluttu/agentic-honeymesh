@@ -49,3 +49,25 @@
 2026-08-03 12:07:53,515 | 127.0.0.1 - - [03/Aug/2026 12:07:53] "GET /internal/api/keys HTTP/1.1" 200 -
 2026-08-03 12:07:54,897 | {"timestamp": "2026-08-03T06:37:54.897611", "event_type": "CANARY_HIT", "ip": "127.0.0.1", "path": "/backup/download", "method": "GET", "details": "Attacker attempted backup download"}
 2026-08-03 12:07:54,898 | 127.0.0.1 - - [03/Aug/2026 12:07:54] "GET /backup/download HTTP/1.1" 200 -
+2026-08-03 13:42:15,814 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-03 13:42:15,815 | [33mPress CTRL+C to quit[0m
+2026-08-03 13:42:15,833 |  * Restarting with watchdog (windowsapi)
+2026-08-03 13:42:16,489 |  * Debugger is active!
+2026-08-03 13:42:16,495 |  * Debugger PIN: 281-510-894
+2026-08-03 13:42:33,850 | {"timestamp": "2026-08-03T08:12:33.849232", "event_type": "normal_access", "ip": "127.0.0.1", "path": "/", "method": "GET", "details": "Homepage visited"}
+2026-08-03 13:42:33,852 | 127.0.0.1 - - [03/Aug/2026 13:42:33] "GET / HTTP/1.1" 200 -
+2026-08-03 13:42:34,374 | {"timestamp": "2026-08-03T08:12:34.374211", "event_type": "login_attempt", "ip": "127.0.0.1", "path": "/login", "method": "POST", "details": "username=admin"}
+2026-08-03 13:42:34,375 | 127.0.0.1 - - [03/Aug/2026 13:42:34] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2026-08-03 13:42:35,405 | {"timestamp": "2026-08-03T08:12:35.405551", "event_type": "login_attempt", "ip": "127.0.0.1", "path": "/login", "method": "POST", "details": "username=admin"}
+2026-08-03 13:42:35,405 | 127.0.0.1 - - [03/Aug/2026 13:42:35] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2026-08-03 13:42:35,942 | {"timestamp": "2026-08-03T08:12:35.942615", "event_type": "login_attempt", "ip": "127.0.0.1", "path": "/login", "method": "POST", "details": "username=root"}
+2026-08-03 13:42:35,942 | 127.0.0.1 - - [03/Aug/2026 13:42:35] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2026-08-03 13:42:37,066 | {"timestamp": "2026-08-03T08:12:37.066558", "event_type": "CANARY_HIT", "ip": "127.0.0.1", "path": "/admin", "method": "GET", "details": "Attacker accessed fake admin panel"}
+2026-08-03 13:42:37,066 | 127.0.0.1 - - [03/Aug/2026 13:42:37] "GET /admin HTTP/1.1" 200 -
+2026-08-03 13:42:38,143 | {"timestamp": "2026-08-03T08:12:38.143022", "event_type": "CANARY_HIT", "ip": "127.0.0.1", "path": "/internal/api/keys", "method": "GET", "details": "Attacker retrieved fake API keys"}
+2026-08-03 13:42:38,144 | 127.0.0.1 - - [03/Aug/2026 13:42:38] "GET /internal/api/keys HTTP/1.1" 200 -
+2026-08-03 13:42:39,121 | {"timestamp": "2026-08-03T08:12:39.121331", "event_type": "CANARY_HIT", "ip": "127.0.0.1", "path": "/backup/download", "method": "GET", "details": "Attacker attempted backup download"}
+2026-08-03 13:42:39,121 | 127.0.0.1 - - [03/Aug/2026 13:42:39] "GET /backup/download HTTP/1.1" 200 -
+2026-08-03 13:44:11,040 |  * Detected change in 'C:\\Users\\sanika\\Desktop\\agentic-honeymesh\\venv\\Lib\\site-packages\\dotenv\\__init__.py', reloading
+2026-08-03 13:44:11,179 |  * Restarting with watchdog (windowsapi)
