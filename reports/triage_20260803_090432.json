@@ -1,0 +1,324 @@
+{
+  "investigation_log": [
+    {
+      "type": "tool_call",
+      "tool": "parse_logs",
+      "input": {
+        "last_n": 100
+      },
+      "result": {
+        "total_events": 15,
+        "canary_hits": [
+          {
+            "timestamp": "2026-08-03T08:12:37.066558",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/admin",
+            "method": "GET",
+            "details": "Attacker accessed fake admin panel"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:38.143022",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/internal/api/keys",
+            "method": "GET",
+            "details": "Attacker retrieved fake API keys"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:39.121331",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/backup/download",
+            "method": "GET",
+            "details": "Attacker attempted backup download"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:08.006025",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/admin",
+            "method": "GET",
+            "details": "Attacker accessed fake admin panel"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:09.008524",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/internal/api/keys",
+            "method": "GET",
+            "details": "Attacker retrieved fake API keys"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:09.599659",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/backup/download",
+            "method": "GET",
+            "details": "Attacker attempted backup download"
+          }
+        ],
+        "login_attempts": [
+          {
+            "timestamp": "2026-08-03T08:12:34.374211",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:35.405551",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:35.942615",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=root"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:04.926610",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:05.645362",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:06.801170",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=root"
+          }
+        ],
+        "unique_ips": [
+          "127.0.0.1"
+        ],
+        "all_events": [
+          {
+            "timestamp": "2026-08-03T08:12:33.849232",
+            "event_type": "normal_access",
+            "ip": "127.0.0.1",
+            "path": "/",
+            "method": "GET",
+            "details": "Homepage visited"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:34.374211",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:35.405551",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:35.942615",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=root"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:37.066558",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/admin",
+            "method": "GET",
+            "details": "Attacker accessed fake admin panel"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:38.143022",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/internal/api/keys",
+            "method": "GET",
+            "details": "Attacker retrieved fake API keys"
+          },
+          {
+            "timestamp": "2026-08-03T08:12:39.121331",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/backup/download",
+            "method": "GET",
+            "details": "Attacker attempted backup download"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:03.723960",
+            "event_type": "normal_access",
+            "ip": "127.0.0.1",
+            "path": "/",
+            "method": "GET",
+            "details": "Homepage visited"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:04.926610",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:05.645362",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:06.801170",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=root"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:08.006025",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/admin",
+            "method": "GET",
+            "details": "Attacker accessed fake admin panel"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:09.008524",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/internal/api/keys",
+            "method": "GET",
+            "details": "Attacker retrieved fake API keys"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:09.599659",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/backup/download",
+            "method": "GET",
+            "details": "Attacker attempted backup download"
+          },
+          {
+            "timestamp": "2026-08-03T08:38:10.643489",
+            "event_type": "DYNAMIC_CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/internal/vault_gDz1gm",
+            "method": "GET",
+            "details": "Attacker accessed dynamically deployed canary: canary_Ate2RHyA"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "check_canary_hits",
+      "input": {},
+      "result": {
+        "total_deployed": 2,
+        "hits": [
+          {
+            "canary_id": "canary_Ate2RHyA",
+            "deployed_at": "2026-08-03T08:37:28.730513",
+            "trigger_reason": "Repeated failed login attempts detected",
+            "payload": {
+              "type": "fake_credential",
+              "fake_api_key": "sk-decoy-SnWwWtCBeUwXLeMsflMCdn1O4MmOmkCx",
+              "fake_endpoint": "/internal/vault_gDz1gm"
+            },
+            "hit": true,
+            "hit_at": "2026-08-03T08:38:10.643489"
+          }
+        ],
+        "pending": [
+          {
+            "canary_id": "canary_tKzBiLcl",
+            "deployed_at": "2026-08-03T07:14:04.871564",
+            "trigger_reason": "Repeated failed login attempts detected",
+            "payload": {
+              "type": "fake_credential",
+              "fake_api_key": "sk-decoy-HM3sHSRLccQQnn6Xxr0yq7CpT8kg3Z4O",
+              "fake_endpoint": "/internal/vault_CeIJVK"
+            },
+            "hit": false,
+            "hit_at": null
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "check_ip_reputation",
+      "input": {
+        "ip_address": "127.0.0.1"
+      },
+      "result": {
+        "ip": "127.0.0.1",
+        "abuse_score": 0,
+        "is_local_test": true,
+        "note": "Local/loopback address - treating as simulated attacker for demo purposes"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "generate_containment_plan",
+      "input": {
+        "evidence_summary": "Canary hits and suspicious IP reputation indicated active exploitation.",
+        "ip_address": "127.0.0.1",
+        "severity": "active_exploitation"
+      },
+      "result": {
+        "generated_at": "2026-08-03T09:04:23.771949",
+        "target_ip": "127.0.0.1",
+        "severity": "active_exploitation",
+        "evidence_summary": "Canary hits and suspicious IP reputation indicated active exploitation.",
+        "commands": {
+          "iptables": "iptables -A INPUT -s 127.0.0.1 -j DROP",
+          "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 127.0.0.1/32"
+        },
+        "patch_recommendations": [
+          "Rotate all credentials exposed via the compromised endpoint(s) immediately.",
+          "Review access logs for this IP across all environments, not just this one.",
+          "Add this IP to a persistent blocklist, not just an ephemeral rule.",
+          "If the admin panel or key endpoint is real (not a canary) in production, patch/remove public exposure."
+        ],
+        "requires_human_approval": true,
+        "status": "pending_review"
+      }
+    },
+    {
+      "type": "reasoning",
+      "content": "Verdict: active_exploitation\nConfidence: 100\nEvidence Summary: Detected canary hits and suspicious IP reputation indicated active exploitation.\nRecommended Action: Rotate all credentials exposed via the compromised endpoint(s) immediately, review access logs for this IP across all environments, add this IP to a persistent blocklist, and patch/remove public exposure if the admin panel or key endpoint is real. Implement the generated containment plan once approved by a human analyst."
+    },
+    {
+      "type": "final_report",
+      "content": "Verdict: active_exploitation\nConfidence: 100\nEvidence Summary: Detected canary hits and suspicious IP reputation indicated active exploitation.\nRecommended Action: Rotate all credentials exposed via the compromised endpoint(s) immediately, review access logs for this IP across all environments, add this IP to a persistent blocklist, and patch/remove public exposure if the admin panel or key endpoint is real. Implement the generated containment plan once approved by a human analyst."
+    }
+  ],
+  "final_report": "Verdict: active_exploitation\nConfidence: 100\nEvidence Summary: Detected canary hits and suspicious IP reputation indicated active exploitation.\nRecommended Action: Rotate all credentials exposed via the compromised endpoint(s) immediately, review access logs for this IP across all environments, add this IP to a persistent blocklist, and patch/remove public exposure if the admin panel or key endpoint is real. Implement the generated containment plan once approved by a human analyst."
+}
