@@ -30,42 +30,19 @@ Critically, the agent decides **which** of these stages to run and in what order
 
 ## Architecture
 
-```
-┌───────────────────────┐
-│   Mock Target App      │  Flask app with intentionally "vulnerable"
-│  (app/mock_target.py)  │  endpoints + dynamic canary serving
-└───────────┬─────────────┘
-            │ writes structured JSON logs
-            ▼
-┌───────────────────────┐
-│   logs/access.log       │
-│   logs/deployed_        │
-│        canaries.json    │
-└───────────┬─────────────┘
-            │ read by tools
-            ▼
-┌─────────────────────────────────────────────────┐
-│              HoneyMesh Agent Loop                  │
-│           (agent/agent.py, LLM-driven)             │
-│                                                     │
-│  Tools available to the LLM:                       │
-│   • parse_logs()                — Detection          │
-│   • check_ip_reputation()       — Threat Intel        │
-│   • deploy_canary()             — Deception            │
-│   • check_canary_hits()         — Deception            │
-│   • generate_containment_plan() — Containment          │
-│                                                     │
-│  The LLM (via Groq) reasons step-by-step, calling  │
-│  tools based on prior results, until it has enough │
-│  evidence to produce a final structured verdict.   │
-└───────────┬─────────────────────────────────────────┘
-            │
-            ▼
-┌───────────────────────┐
-│   Streamlit Dashboard   │  Live visual timeline of the
-│     (dashboard.py)      │  investigation, canary status,
-│                         │  and final triage report
-└───────────────────────┘
+```mermaid
+flowchart TD
+    A[Mock Target App<br/>app/mock_target.py] -->|writes structured JSON logs| B[(logs/access.log<br/>logs/deployed_canaries.json)]
+    B -->|read by tools| C[HoneyMesh Agent Loop<br/>agent/agent.py — LLM-driven]
+
+    C --> D1[parse_logs — Detection]
+    C --> D2[check_ip_reputation — Threat Intel]
+    C --> D3[deploy_canary — Deception]
+    C --> D4[check_canary_hits — Deception]
+    C --> D5[generate_containment_plan — Containment]
+
+    C -->|produces final verdict| E[Streamlit Dashboard<br/>dashboard.py]
+    E --> F[Live investigation timeline,<br/>canary status, final triage report]
 ```
 
 Two attacker simulation scripts (`attacker/simulate_attack.py` and `attacker/simulate_benign.py`) generate realistic log data for a malicious scenario and a benign scenario respectively, so the agent's differentiated reasoning can be demonstrated directly.
