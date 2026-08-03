@@ -1,10 +1,10 @@
 import requests
 import time
 import random
+import json
 
 BASE_URL = "http://127.0.0.1:5000"
 
-# Simulate a realistic attack chain: recon -> credential probing -> exploitation
 ATTACK_STEPS = [
     {"path": "/", "method": "GET", "desc": "Recon: checking homepage"},
     {"path": "/login", "method": "POST", "data": {"username": "admin", "password": "admin123"}, "desc": "Credential probing attempt 1"},
@@ -16,11 +16,24 @@ ATTACK_STEPS = [
 ]
 
 
+def get_latest_canary_endpoint():
+    """Reads the deployed canaries file to find the most recent fake endpoint,
+    simulating an attacker who discovered a planted trap."""
+    try:
+        with open("logs/deployed_canaries.json", "r") as f:
+            canaries = json.load(f)
+        if canaries:
+            return canaries[-1].get("payload", {}).get("fake_endpoint")
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+    return None
+
+
 def run_attack():
     print(f"[ATTACKER SIM] Starting attack sequence against {BASE_URL}\n")
 
     for step in ATTACK_STEPS:
-        time.sleep(random.uniform(0.5, 1.5))  # realistic pacing, not instant
+        time.sleep(random.uniform(0.5, 1.5))
         url = BASE_URL + step["path"]
 
         try:
@@ -34,6 +47,19 @@ def run_attack():
         except requests.exceptions.ConnectionError:
             print(f"ERROR: Could not connect to {url}. Is mock_target.py running?")
             return
+
+    # Simulate the attacker finding and hitting a dynamically deployed canary
+    time.sleep(1)
+    canary_endpoint = get_latest_canary_endpoint()
+    if canary_endpoint:
+        url = BASE_URL + canary_endpoint
+        try:
+            resp = requests.get(url, timeout=3)
+            print(f"[GET] {canary_endpoint} -> {resp.status_code} | Attacker discovered and accessed DYNAMIC canary trap")
+        except requests.exceptions.ConnectionError:
+            print(f"ERROR: Could not connect to {url}")
+    else:
+        print("[ATTACKER SIM] No dynamic canary deployed yet to test against.")
 
     print("\n[ATTACKER SIM] Attack sequence complete. Check logs/access.log")
 
