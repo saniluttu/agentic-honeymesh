@@ -46,7 +46,6 @@ with col2:
     st.subheader("Live Investigation Log")
 
     if run_button:
-        log_placeholder = st.empty()
         captured_output = StringIO()
 
         with st.spinner("Agent investigating..."):
@@ -54,18 +53,46 @@ with col2:
                 final_report = run_agent()
 
         output_text = captured_output.getvalue()
+        lines = output_text.split("\n")
+        i = 0
+        while i < len(lines):
+            line = lines[i]
 
-        # Split into sections for nicer display
-        for line in output_text.split("\n"):
             if line.startswith("[TOOL CALL]"):
                 st.info(line)
+                i += 1
+
             elif line.startswith("[TOOL RESULT]"):
+                # Collect this line plus all following lines until the next
+                # marker — that's the full (possibly multi-line) JSON blob
+                result_lines = [line.replace("[TOOL RESULT] ", "")]
+                i += 1
+                while (
+                    i < len(lines)
+                    and not lines[i].startswith("[TOOL CALL]")
+                    and not lines[i].startswith("[AGENT REASONING]")
+                    and "FINAL TRIAGE REPORT" not in lines[i]
+                ):
+                    result_lines.append(lines[i])
+                    i += 1
                 with st.expander("View tool result", expanded=False):
-                    st.code(line.replace("[TOOL RESULT] ", ""), language="json")
+                    st.code("\n".join(result_lines), language="json")
+
             elif line.startswith("[AGENT REASONING]"):
                 st.warning(line)
-            elif line.strip() and "=" not in line and "---" not in line:
+                i += 1
+
+            elif (
+                line.strip()
+                and "=" not in line
+                and "---" not in line
+                and "FINAL TRIAGE REPORT" not in line
+            ):
                 st.text(line)
+                i += 1
+
+            else:
+                i += 1
 
         st.divider()
         st.subheader("📋 Final Triage Report")

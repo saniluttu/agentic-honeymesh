@@ -70,5 +70,23 @@
     ],
     "requires_human_approval": true,
     "status": "pending_review"
+  },
+  {
+    "generated_at": "2026-08-03T08:18:39.165642",
+    "target_ip": "127.0.0.1",
+    "severity": "active_exploitation",
+    "evidence_summary": "Multiple canary hits from IP 127.0.0.1, including accessing fake admin panel, retrieving fake API keys, and attempting backup download. IP reputation check shows malicious activity.",
+    "commands": {
+      "iptables": "iptables -A INPUT -s 127.0.0.1 -j DROP",
+      "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 127.0.0.1/32"
+    },
+    "patch_recommendations": [
+      "Rotate all credentials exposed via the compromised endpoint(s) immediately.",
+      "Review access logs for this IP across all environments, not just this one.",
+      "Add this IP to a persistent blocklist, not just an ephemeral rule.",
+      "If the admin panel or key endpoint is real (not a canary) in production, patch/remove public exposure."
+    ],
+    "requires_human_approval": true,
+    "status": "pending_review"
   }
 ]
