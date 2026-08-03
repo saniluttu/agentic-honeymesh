@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 from .tools import parse_logs, check_ip_reputation
 from .deception import deploy_canary, check_canary_hits
+from .containment import generate_containment_plan
 
 load_dotenv()
 
@@ -21,6 +22,11 @@ TOOL_FUNCTIONS = {
         canary_type=kwargs.get("canary_type", "fake_credential")
     ),
     "check_canary_hits": lambda **kwargs: check_canary_hits(),
+    "generate_containment_plan": lambda **kwargs: generate_containment_plan(
+        ip_address=kwargs["ip_address"],
+        severity=kwargs["severity"],
+        evidence_summary=kwargs["evidence_summary"]
+    ),
 }
 
 TOOLS = [
@@ -73,7 +79,23 @@ TOOLS = [
             "description": "Checks whether any previously deployed canary traps have been triggered by an attacker.",
             "parameters": {"type": "object", "properties": {}}
         }
-    }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "generate_containment_plan",
+            "description": "Generates concrete firewall block commands (iptables, AWS Security Group) and patch recommendations for a confirmed malicious IP. Use this only after you have enough evidence to justify containment (e.g., confirmed canary hits plus suspicious IP reputation).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ip_address": {"type": "string", "description": "The IP address to contain"},
+                    "severity": {"type": "string", "enum": ["recon", "active_exploitation"]},
+                    "evidence_summary": {"type": "string", "description": "Brief summary of why containment is justified"}
+                },
+                "required": ["ip_address", "severity", "evidence_summary"]
+            }
+        }
+    },
 ]
 
 SYSTEM_PROMPT = """You are HoneyMesh, an autonomous security triage agent monitoring a corporate web application.
@@ -83,13 +105,16 @@ Your job: investigate suspicious activity end-to-end and produce a triage decisi
 - check IP reputation
 - deploy deception traps (canaries) to gather more evidence on uncertain threats
 - check if any deployed canaries have been triggered
+- generate a containment plan (firewall block commands + patch recommendations) once exploitation is confirmed
 
 You must reason step by step and decide WHICH tools to call and WHEN, based on what you learn from each tool result. Do not call every tool blindly — call only what the evidence justifies.
 
 If you find credential-stuffing/recon activity but aren't sure of intent, deploying a canary is a reasonable investigative step.
 If you find canary hits and a malicious IP reputation, that confirms active exploitation, not just recon.
 
-When you have enough evidence, STOP calling tools and produce a final structured report with:
+If the verdict is "active_exploitation" with reasonable confidence, call generate_containment_plan before writing your final report, so the report can reference concrete containment steps.
+
+STOP calling tools once you have enough evidence and, where justified, a containment plan. Then produce a final structured report with:
 - verdict: "benign" | "recon" | "active_exploitation"
 - confidence: 0-100
 - evidence_summary: what you found and from which tools
