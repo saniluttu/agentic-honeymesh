@@ -1,0 +1,5 @@
+{
+  "canary_endpoints": ["/admin", "/internal/api/keys", "/backup/download"],
+  "canary_files": [".env", "config/aws_credentials.txt"],
+  "alert_on_access": true
+}

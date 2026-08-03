@@ -1,0 +1,25 @@
+2026-08-03 11:26:28,598 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-03 11:26:28,598 | [33mPress CTRL+C to quit[0m
+2026-08-03 11:26:28,600 |  * Restarting with stat
+2026-08-03 11:26:29,200 |  * Debugger is active!
+2026-08-03 11:26:29,207 |  * Debugger PIN: 281-510-894
+2026-08-03 11:46:52,394 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-03 11:46:52,395 | [33mPress CTRL+C to quit[0m
+2026-08-03 11:46:52,396 |  * Restarting with stat
+2026-08-03 11:46:52,880 |  * Debugger is active!
+2026-08-03 11:46:52,884 |  * Debugger PIN: 281-510-894
+2026-08-03 11:51:32,552 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-03 11:51:32,552 | [33mPress CTRL+C to quit[0m
+2026-08-03 11:51:32,554 |  * Restarting with stat
+2026-08-03 11:51:33,002 |  * Debugger is active!
+2026-08-03 11:51:33,006 |  * Debugger PIN: 281-510-894
+2026-08-03 11:52:15,498 | {"timestamp": "2026-08-03T06:22:15.498098", "event_type": "normal_access", "ip": "127.0.0.1", "path": "/", "method": "GET", "details": "Homepage visited"}
+2026-08-03 11:52:15,501 | 127.0.0.1 - - [03/Aug/2026 11:52:15] "GET / HTTP/1.1" 200 -
+2026-08-03 11:52:16,166 | 127.0.0.1 - - [03/Aug/2026 11:52:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-08-03 11:53:07,362 | {"timestamp": "2026-08-03T06:23:07.362160", "event_type": "CANARY_HIT", "ip": "127.0.0.1", "path": "/admin", "method": "GET", "details": "Attacker accessed fake admin panel"}
+2026-08-03 11:53:07,362 | 127.0.0.1 - - [03/Aug/2026 11:53:07] "GET /admin HTTP/1.1" 200 -
+2026-08-03 11:53:28,564 | {"timestamp": "2026-08-03T06:23:28.564994", "event_type": "CANARY_HIT", "ip": "127.0.0.1", "path": "/internal/api/keys", "method": "GET", "details": "Attacker retrieved fake API keys"}
+2026-08-03 11:53:28,564 | 127.0.0.1 - - [03/Aug/2026 11:53:28] "GET /internal/api/keys HTTP/1.1" 200 -
