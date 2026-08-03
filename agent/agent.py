@@ -10,6 +10,11 @@ from .containment import generate_containment_plan
 
 load_dotenv()
 
+if not os.getenv("GROQ_API_KEY"):
+    raise EnvironmentError(
+        "GROQ_API_KEY is not set. Add it to your .env file before running the agent."
+    )
+
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 MODEL = "llama-3.3-70b-versatile"

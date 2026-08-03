@@ -10,3 +10,7 @@
 2026-08-03 14:44:44,095 | 127.0.0.1 - - [03/Aug/2026 14:44:44] "GET / HTTP/1.1" 200 -
 2026-08-03 14:44:45,880 | {"timestamp": "2026-08-03T09:14:45.880859", "event_type": "login_attempt", "ip": "127.0.0.1", "path": "/login", "method": "POST", "details": "username=sanika"}
 2026-08-03 14:44:45,881 | 127.0.0.1 - - [03/Aug/2026 14:44:45] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2026-08-03 14:51:41,626 |  * Detected change in 'C:\\Users\\sanika\\Desktop\\agentic-honeymesh\\venv\\Lib\\site-packages\\dotenv\\__init__.py', reloading
+2026-08-03 14:51:41,894 |  * Restarting with watchdog (windowsapi)
+2026-08-03 14:51:42,821 |  * Debugger is active!
+2026-08-03 14:51:42,830 |  * Debugger PIN: 281-510-894
