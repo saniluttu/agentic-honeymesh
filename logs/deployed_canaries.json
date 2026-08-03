@@ -1,0 +1,14 @@
+[
+  {
+    "canary_id": "canary_tKzBiLcl",
+    "deployed_at": "2026-08-03T07:14:04.871564",
+    "trigger_reason": "Repeated failed login attempts detected",
+    "payload": {
+      "type": "fake_credential",
+      "fake_api_key": "sk-decoy-HM3sHSRLccQQnn6Xxr0yq7CpT8kg3Z4O",
+      "fake_endpoint": "/internal/vault_CeIJVK"
+    },
+    "hit": false,
+    "hit_at": null
+  }
+]
