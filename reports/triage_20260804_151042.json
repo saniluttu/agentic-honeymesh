@@ -1,0 +1,201 @@
+{
+  "investigation_log": [
+    {
+      "type": "tool_call",
+      "tool": "parse_logs",
+      "input": {
+        "last_n": 100
+      },
+      "result": {
+        "total_events": 10,
+        "skipped_malformed_lines": 89,
+        "canary_hits": [
+          {
+            "timestamp": "2026-08-03T13:05:39.241840",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/admin",
+            "method": "GET",
+            "details": "Attacker accessed fake admin panel"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:39.950184",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/internal/api/keys",
+            "method": "GET",
+            "details": "Attacker retrieved fake API keys"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:41.361237",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/backup/download",
+            "method": "GET",
+            "details": "Attacker attempted backup download"
+          }
+        ],
+        "login_attempts": [
+          {
+            "timestamp": "2026-08-03T13:05:36.149967",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:37.241076",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:38.090496",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=root"
+          }
+        ],
+        "unique_ips": [
+          "127.0.0.1"
+        ],
+        "all_events": [
+          {
+            "timestamp": "2026-08-03T13:05:34.981790",
+            "event_type": "normal_access",
+            "ip": "127.0.0.1",
+            "path": "/",
+            "method": "GET",
+            "details": "Homepage visited"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:36.149967",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:37.241076",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=admin"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:38.090496",
+            "event_type": "login_attempt",
+            "ip": "127.0.0.1",
+            "path": "/login",
+            "method": "POST",
+            "details": "username=root"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:39.241840",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/admin",
+            "method": "GET",
+            "details": "Attacker accessed fake admin panel"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:39.950184",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/internal/api/keys",
+            "method": "GET",
+            "details": "Attacker retrieved fake API keys"
+          },
+          {
+            "timestamp": "2026-08-03T13:05:41.361237",
+            "event_type": "CANARY_HIT",
+            "ip": "127.0.0.1",
+            "path": "/backup/download",
+            "method": "GET",
+            "details": "Attacker attempted backup download"
+          },
+          {
+            "timestamp": "2026-08-03T15:02:44.906217",
+            "event_type": "normal_access",
+            "ip": "127.0.0.1",
+            "path": "/",
+            "method": "GET",
+            "details": "Homepage visited"
+          },
+          {
+            "timestamp": "2026-08-03T15:02:45.319379",
+            "event_type": "normal_404",
+            "ip": "127.0.0.1",
+            "path": "/favicon.ico",
+            "method": "GET",
+            "details": "Unknown path accessed: /favicon.ico"
+          },
+          {
+            "timestamp": "2026-08-03T15:02:57.076796",
+            "event_type": "normal_access",
+            "ip": "127.0.0.1",
+            "path": "/",
+            "method": "GET",
+            "details": "Homepage visited"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "check_ip_reputation",
+      "input": {
+        "ip_address": "127.0.0.1"
+      },
+      "result": {
+        "ip": "127.0.0.1",
+        "abuse_score": 0,
+        "is_local_test": true,
+        "note": "Local/loopback address - treating as simulated attacker for demo purposes"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "generate_containment_plan",
+      "input": {
+        "evidence_summary": "Canary hits and suspicious access patterns from 127.0.0.1, indicating active exploitation attempt on the mock target application.",
+        "ip_address": "127.0.0.1",
+        "severity": "active_exploitation"
+      },
+      "result": {
+        "generated_at": "2026-08-04T15:10:21.515152",
+        "target_ip": "127.0.0.1",
+        "severity": "active_exploitation",
+        "evidence_summary": "Canary hits and suspicious access patterns from 127.0.0.1, indicating active exploitation attempt on the mock target application.",
+        "commands": {
+          "iptables": "iptables -A INPUT -s 127.0.0.1 -j DROP",
+          "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 127.0.0.1/32"
+        },
+        "patch_recommendations": [
+          "Rotate all credentials exposed via the compromised endpoint(s) immediately.",
+          "Review access logs for this IP across all environments, not just this one.",
+          "Add this IP to a persistent blocklist, not just an ephemeral rule.",
+          "If the admin panel or key endpoint is real (not a canary) in production, patch/remove public exposure."
+        ],
+        "requires_human_approval": true,
+        "status": "pending_review"
+      }
+    },
+    {
+      "type": "reasoning",
+      "content": "Triage Report:\n\n- Verdict: active_exploitation\n- Confidence: 100\n- Evidence Summary: \n    - Suspicious access patterns from 127.0.0.1, \n    - Multiple canary hits indicating active exploitation attempt on the mock target application\n    - AbuseIPDB score of 0 but local test environment\n- Recommended Action: \n    - Execute the provided iptables or AWS Security Group command to block 127.0.0.1 at the firewall level\n    - Rotate all credentials exposed via the compromised endpoint(s) immediately\n    - Review access logs for this IP across all environments and consider adding it to a persistent blocklist\n    - Review the exposure of sensitive endpoints (like admin panels or key repositories) in production environments and patch or remove public access as necessary\n\nPlease review and approve the containment plan."
+    },
+    {
+      "type": "final_report",
+      "content": "Triage Report:\n\n- Verdict: active_exploitation\n- Confidence: 100\n- Evidence Summary: \n    - Suspicious access patterns from 127.0.0.1, \n    - Multiple canary hits indicating active exploitation attempt on the mock target application\n    - AbuseIPDB score of 0 but local test environment\n- Recommended Action: \n    - Execute the provided iptables or AWS Security Group command to block 127.0.0.1 at the firewall level\n    - Rotate all credentials exposed via the compromised endpoint(s) immediately\n    - Review access logs for this IP across all environments and consider adding it to a persistent blocklist\n    - Review the exposure of sensitive endpoints (like admin panels or key repositories) in production environments and patch or remove public access as necessary\n\nPlease review and approve the containment plan."
+    }
+  ],
+  "final_report": "Triage Report:\n\n- Verdict: active_exploitation\n- Confidence: 100\n- Evidence Summary: \n    - Suspicious access patterns from 127.0.0.1, \n    - Multiple canary hits indicating active exploitation attempt on the mock target application\n    - AbuseIPDB score of 0 but local test environment\n- Recommended Action: \n    - Execute the provided iptables or AWS Security Group command to block 127.0.0.1 at the firewall level\n    - Rotate all credentials exposed via the compromised endpoint(s) immediately\n    - Review access logs for this IP across all environments and consider adding it to a persistent blocklist\n    - Review the exposure of sensitive endpoints (like admin panels or key repositories) in production environments and patch or remove public access as necessary\n\nPlease review and approve the containment plan."
+}

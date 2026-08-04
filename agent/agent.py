@@ -123,8 +123,8 @@ STOP calling tools once you have enough evidence and, where justified, a contain
 - verdict: "benign" | "recon" | "active_exploitation"
 - confidence: 0-100
 - evidence_summary: what you found and from which tools
-- recommended_action: what a human analyst should do next (e.g., block IP, rotate credentials, escalate to IR team)
-
+- recommended_action: what a human analyst should do next
+- If you called generate_containment_plan, include the EXACT iptables and AWS Security Group commands from that tool's result directly in your report, in a code block, not just a reference to "the generated plan." A human analyst needs the literal command to copy and run.
 Be concise but thorough. This is a real triage report, not a chatbot answer."""
 
 

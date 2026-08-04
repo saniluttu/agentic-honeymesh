@@ -1,9 +1,9 @@
 [
   {
-    "generated_at": "2026-08-03T09:15:19.393342",
+    "generated_at": "2026-08-04T14:29:57.348313",
     "target_ip": "127.0.0.1",
     "severity": "active_exploitation",
-    "evidence_summary": "canary_hits_plus_suspicious_ip_reputation",
+    "evidence_summary": "Canary hits and suspicious IP reputation",
     "commands": {
       "iptables": "iptables -A INPUT -s 127.0.0.1 -j DROP",
       "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 127.0.0.1/32"
@@ -18,69 +18,19 @@
     "status": "pending_review"
   },
   {
-    "generated_at": "2026-08-03T09:22:42.190995",
-    "target_ip": "203.0.113.99",
+    "generated_at": "2026-08-04T15:10:21.515152",
+    "target_ip": "127.0.0.1",
     "severity": "active_exploitation",
-    "evidence_summary": "unit test evidence",
+    "evidence_summary": "Canary hits and suspicious access patterns from 127.0.0.1, indicating active exploitation attempt on the mock target application.",
     "commands": {
-      "iptables": "iptables -A INPUT -s 203.0.113.99 -j DROP",
-      "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 203.0.113.99/32"
+      "iptables": "iptables -A INPUT -s 127.0.0.1 -j DROP",
+      "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 127.0.0.1/32"
     },
     "patch_recommendations": [
       "Rotate all credentials exposed via the compromised endpoint(s) immediately.",
       "Review access logs for this IP across all environments, not just this one.",
       "Add this IP to a persistent blocklist, not just an ephemeral rule.",
       "If the admin panel or key endpoint is real (not a canary) in production, patch/remove public exposure."
-    ],
-    "requires_human_approval": true,
-    "status": "pending_review"
-  },
-  {
-    "generated_at": "2026-08-03T09:22:42.191981",
-    "target_ip": "203.0.113.100",
-    "severity": "recon",
-    "evidence_summary": "unit test recon",
-    "commands": {
-      "iptables": "iptables -A INPUT -s 203.0.113.100 -j DROP",
-      "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 203.0.113.100/32"
-    },
-    "patch_recommendations": [
-      "Monitor this IP for escalation before blocking, to gather more attacker TTP data.",
-      "Consider rate-limiting instead of a hard block if this may be a false positive."
-    ],
-    "requires_human_approval": true,
-    "status": "pending_review"
-  },
-  {
-    "generated_at": "2026-08-03T09:32:23.116863",
-    "target_ip": "203.0.113.99",
-    "severity": "active_exploitation",
-    "evidence_summary": "unit test evidence",
-    "commands": {
-      "iptables": "iptables -A INPUT -s 203.0.113.99 -j DROP",
-      "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 203.0.113.99/32"
-    },
-    "patch_recommendations": [
-      "Rotate all credentials exposed via the compromised endpoint(s) immediately.",
-      "Review access logs for this IP across all environments, not just this one.",
-      "Add this IP to a persistent blocklist, not just an ephemeral rule.",
-      "If the admin panel or key endpoint is real (not a canary) in production, patch/remove public exposure."
-    ],
-    "requires_human_approval": true,
-    "status": "pending_review"
-  },
-  {
-    "generated_at": "2026-08-03T09:32:23.119864",
-    "target_ip": "203.0.113.100",
-    "severity": "recon",
-    "evidence_summary": "unit test recon",
-    "commands": {
-      "iptables": "iptables -A INPUT -s 203.0.113.100 -j DROP",
-      "aws_security_group": "aws ec2 revoke-security-group-ingress --group-id <SECURITY_GROUP_ID> --protocol tcp --port 0-65535 --cidr 203.0.113.100/32"
-    },
-    "patch_recommendations": [
-      "Monitor this IP for escalation before blocking, to gather more attacker TTP data.",
-      "Consider rate-limiting instead of a hard block if this may be a false positive."
     ],
     "requires_human_approval": true,
     "status": "pending_review"
